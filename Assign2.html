@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kenya Cities Map</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 600px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-4">
+    <h1 class="text-center">Major Cities in Kenya</h1>
+    <div id="map"></div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+    // Initialize the map
+    var map = L.map('map').setView([-1.286389, 36.817223], 6);
+
+    // Add OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // Add markers with custom popups
+    var cities = [
+        {
+            name: "Nairobi",
+            coords: [-1.286389, 36.817223],
+            info: "Nairobi is the capital and largest city of Kenya."
+        },
+        {
+            name: "Mombasa",
+            coords: [-4.043477, 39.668206],
+            info: "Mombasa is a coastal city in Kenya along the Indian Ocean."
+        },
+        {
+            name: "Kisumu",
+            coords: [-0.091702, 34.767957],
+            info: "Kisumu is a port city in western Kenya at Lake Victoria."
+        }
+    ];
+
+    cities.forEach(function(city) {
+        var marker = L.marker(city.coords).addTo(map);
+        marker.bindPopup('<b>' + city.name + '</b><br>' + city.info);
+    });
+</script>
+
+</body>
+</html>
